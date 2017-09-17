@@ -22,6 +22,5 @@ public class Controller {
 
         CityApi mCityApi = retrofit.create(CityApi.class);
         return mCityApi;
-
     }
 }

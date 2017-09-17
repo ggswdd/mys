@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import com.example.finalfantasy.mys.model.Example;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -16,8 +18,9 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     private static CityApi mCityApi;
-    RecyclerView recyclerView;
-    List<City> posts;
+    RecyclerView mRecyclerView;
+     List<List<com.example.finalfantasy.mys.model.List>> mL;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,34 +28,42 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mCityApi = Controller.getApi();
+//
+//
 
-        posts = new ArrayList<City>();
 
-        recyclerView = (RecyclerView) findViewById(R.id.posts_recycle_view);
+        mRecyclerView = (RecyclerView) findViewById(R.id.posts_recycle_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setLayoutManager(layoutManager);
 
-        PostsAdapter adapter = new PostsAdapter(posts);
-        recyclerView.setAdapter(adapter);
+//        final PostsAdapter adapter = new PostsAdapter(posts);
+//        mRecyclerView.setAdapter(adapter);
 
-        /* Пример вызова синхронного запроса. В главном потоке ТАБУ!
-        try {
-            Response response = umoriliApi.getData("bash", 50).execute();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
 
-        mCityApi.getData("q","d2a6b21c943e38d9e44edcc03c9912ad").enqueue(new Callback<List<City>>() {
+//        try {
+//            Response response =  mCityApi.getData("d2a6b21c943e38d9e44edcc03c9912ad","Moscow").execute();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+        mCityApi.getData("d2a6b21c943e38d9e44edcc03c9912ad","Moscow").enqueue(new Callback<Example>() {
             @Override
-            public void onResponse(Call<List<City>> call, Response<List<City>> response) {
-                posts.addAll(response.body());
-                recyclerView.getAdapter().notifyDataSetChanged();
+            public void onResponse(Call<Example> call, Response<Example> response) {
+
+
+                mL=response.body().getFillLists();
+                final PostsAdapter adapter = new PostsAdapter(mL);
+                mRecyclerView.setAdapter(adapter);
+                mRecyclerView.getAdapter().notifyDataSetChanged();
+
             }
 
             @Override
-            public void onFailure(Call<List<City>> call, Throwable t) {
+            public void onFailure(Call<Example> call, Throwable t) {
+                Log.d("TAGD",toString());
                 Toast.makeText(MainActivity.this, "An error occurred during networking", Toast.LENGTH_SHORT).show();
             }
+
         });
     }
 }
