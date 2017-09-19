@@ -1,4 +1,4 @@
-package com.example.finalfantasy.mys;
+package com.example.finalfantasy.mys.interfaces;
 
 
 import com.example.finalfantasy.mys.model.Example;

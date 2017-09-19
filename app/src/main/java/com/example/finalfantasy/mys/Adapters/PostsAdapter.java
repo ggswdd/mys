@@ -1,4 +1,4 @@
-package com.example.finalfantasy.mys;
+package com.example.finalfantasy.mys.Adapters;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -7,14 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.finalfantasy.mys.R;
+
 import java.util.List;
 
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
 
-    private List<List<com.example.finalfantasy.mys.model.List>> posts;
+    private List<List<com.example.finalfantasy.mys.model.List>> mPosts;
 
     public PostsAdapter(List<List<com.example.finalfantasy.mys.model.List>> posts) {
-        this.posts = posts;
+        this.mPosts = posts;
     }
 
     @Override
@@ -25,37 +27,36 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        List<com.example.finalfantasy.mys.model.List> mf= posts.get(position);
+        List<com.example.finalfantasy.mys.model.List> mf = mPosts.get(position);
         holder.setViev(mf);
     }
 
     @Override
     public int getItemCount() {
-        return posts.size();
+        return mPosts.size();
     }
 
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        TextView dat;
+        TextView mDat;
         RecyclerView mRc;
         List<com.example.finalfantasy.mys.model.List> mV;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            dat=itemView.findViewById(R.id.dat);
-            mRc=itemView.findViewById(R.id.res);
-            LinearLayoutManager layoutManager = new LinearLayoutManager(itemView.getContext());
+            mDat = itemView.findViewById(R.id.dat);
+            mRc = itemView.findViewById(R.id.rec);
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(itemView.getContext());
             mRc.setLayoutManager(layoutManager);
 
         }
 
-            public void setViev(List<com.example.finalfantasy.mys.model.List> v)
-        {
-         dat.setText(v.get(0).getDtTxt().substring(0,10));
-            if(v==null)
+        public void setViev(List<com.example.finalfantasy.mys.model.List> v) {
+            mDat.setText(v.get(0).getDtTxt().substring(0, 10));
+            if (v == null)
                 return;
             else
-            mV=v;
+                mV = v;
 
             RcAdapter adapter = new RcAdapter(mV);
             mRc.setAdapter(adapter);

@@ -4,7 +4,10 @@ package com.example.finalfantasy.mys.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-    public class Main {
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
+public class Main {
 
         @SerializedName("temp")
         @Expose
@@ -56,8 +59,9 @@ import com.google.gson.annotations.SerializedName;
             this.tempMax = tempMax;
         }
 
-        public Double getPressure() {
-            return pressure;
+        public double getPressure() {
+            double newDouble = new BigDecimal(pressure/1000).setScale(2, RoundingMode.UP).doubleValue();
+            return newDouble;
         }
 
         public void setPressure(Double pressure) {

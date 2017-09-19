@@ -1,6 +1,7 @@
-package com.example.finalfantasy.mys;
+package com.example.finalfantasy.mys.Controllers;
 
 
+import com.example.finalfantasy.mys.interfaces.CityApi;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
