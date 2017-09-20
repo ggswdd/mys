@@ -13,24 +13,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.finalfantasy.mys.Adapters.FavoritsAdapter;
-import com.example.finalfantasy.mys.DB.DBhealper;
-import com.example.finalfantasy.mys.DetalFav1;
+import com.example.finalfantasy.mys.adapters.FavoritesAdapter;
+import com.example.finalfantasy.mys.database.DBhealper;
+import com.example.finalfantasy.mys.FavoritesActivity;
 import com.example.finalfantasy.mys.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Favorits extends Fragment {
+public class FragmentFavorites extends Fragment {
     private View view;
     private static RecyclerView mFav;
     private static DBhealper mDB;
     private static List<String> mList;
     public static View.OnClickListener mCll;
 
-    public static Favorits getInstace() {
+    public static FragmentFavorites getInstace() {
         Bundle x = new Bundle();
-        Favorits fragment = new Favorits();
+        FragmentFavorites fragment = new FragmentFavorites();
         fragment.setArguments(x);
         return fragment;
     }
@@ -38,12 +38,12 @@ public class Favorits extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.favorits, container, false);
+        view = inflater.inflate(R.layout.favorites_fragment, container, false);
         mCll = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 TextView mA = (TextView) view;
-                Intent mInt = new Intent(getContext(), DetalFav1.class);
+                Intent mInt = new Intent(getContext(), FavoritesActivity.class);
                 mInt.putExtra("name", mA.getText());
                 startActivity(mInt);
             }
@@ -63,7 +63,7 @@ public class Favorits extends Fragment {
             while (mCursor.moveToNext());
         }
         mCursor.close();
-        FavoritsAdapter mAdapt = new FavoritsAdapter(mList);
+        FavoritesAdapter mAdapt = new FavoritesAdapter(mList);
         mFav.setAdapter(mAdapt);
         mFav.getAdapter().notifyDataSetChanged();
         mDB.close();
@@ -85,7 +85,7 @@ public class Favorits extends Fragment {
             while (mCursor.moveToNext());
         }
         mCursor.close();
-        FavoritsAdapter mAdapt = new FavoritsAdapter(mList);
+        FavoritesAdapter mAdapt = new FavoritesAdapter(mList);
         mFav.setAdapter(mAdapt);
         mFav.getAdapter().notifyDataSetChanged();
     }

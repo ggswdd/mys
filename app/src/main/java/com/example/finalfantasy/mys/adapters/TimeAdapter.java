@@ -1,4 +1,4 @@
-package com.example.finalfantasy.mys.Adapters;
+package com.example.finalfantasy.mys.adapters;
 
 /**
  * Created by FinalFantasy on 17.09.2017.
@@ -17,17 +17,17 @@ import com.example.finalfantasy.mys.R;
 
 import java.util.List;
 
-public class RcAdapter extends RecyclerView.Adapter<RcAdapter.RcHolder> {
+public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.RcHolder> {
 
     private List<com.example.finalfantasy.mys.model.List> mPosts;
 
-    public RcAdapter(List<com.example.finalfantasy.mys.model.List> posts) {
+    public TimeAdapter(List<com.example.finalfantasy.mys.model.List> posts) {
         this.mPosts = posts;
     }
 
     @Override
     public RcHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.rc, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.time_holder, parent, false);
         return new RcHolder(v);
     }
 

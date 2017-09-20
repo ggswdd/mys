@@ -1,4 +1,4 @@
-package com.example.finalfantasy.mys.Adapters;
+package com.example.finalfantasy.mys.adapters;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,7 +21,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.listr, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.citys_holder, parent, false);
         return new ViewHolder(v);
     }
 
@@ -58,7 +58,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             else
                 mV = v;
 
-            RcAdapter adapter = new RcAdapter(mV);
+            TimeAdapter adapter = new TimeAdapter(mV);
             mRc.setAdapter(adapter);
             mRc.getAdapter().notifyDataSetChanged();
         }

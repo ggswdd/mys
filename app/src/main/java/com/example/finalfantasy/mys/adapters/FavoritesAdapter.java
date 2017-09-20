@@ -1,4 +1,4 @@
-package com.example.finalfantasy.mys.Adapters;
+package com.example.finalfantasy.mys.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,23 +7,23 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.finalfantasy.mys.R;
-import com.example.finalfantasy.mys.fragmentClases.Favorits;
+import com.example.finalfantasy.mys.fragmentClases.FragmentFavorites;
 
 /**
  * Created by FinalFantasy on 19.09.2017.
  */
 
-public class FavoritsAdapter extends RecyclerView.Adapter<FavoritsAdapter.ViewFavorit> {
+public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.ViewFavorit> {
 
     private java.util.List<String> mPosts;
 
-    public FavoritsAdapter(java.util.List<String> posts) {
+    public FavoritesAdapter(java.util.List<String> posts) {
         this.mPosts = posts;
     }
 
     @Override
     public ViewFavorit onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.fav, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.favorites_holder, parent, false);
         return new ViewFavorit(v);
     }
 
@@ -46,7 +46,7 @@ public class FavoritsAdapter extends RecyclerView.Adapter<FavoritsAdapter.ViewFa
             super(itemView);
             mDat=itemView.findViewById(R.id.favCit);
 
-            mDat.setOnClickListener(Favorits.mCll);
+            mDat.setOnClickListener(FragmentFavorites.mCll);
         }
 
         public void setViev(String v)

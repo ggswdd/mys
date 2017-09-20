@@ -16,9 +16,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.finalfantasy.mys.Adapters.PostsAdapter;
-import com.example.finalfantasy.mys.Controllers.Controller;
-import com.example.finalfantasy.mys.DB.DBhealper;
+import com.example.finalfantasy.mys.adapters.PostsAdapter;
+import com.example.finalfantasy.mys.apiControllers.ApiController;
+import com.example.finalfantasy.mys.database.DBhealper;
 import com.example.finalfantasy.mys.R;
 import com.example.finalfantasy.mys.interfaces.CityApi;
 import com.example.finalfantasy.mys.model.Example;
@@ -28,7 +28,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Citys extends Fragment implements View.OnClickListener {
+public class CityFragment extends Fragment implements View.OnClickListener {
     private View view;
     private EditText mEditText;
     private RecyclerView mRecyclerView;
@@ -39,9 +39,9 @@ public class Citys extends Fragment implements View.OnClickListener {
     private java.util.List<java.util.List<List>> mL;
     private DBhealper mDB;
 
-    public static Citys getInstace() {
+    public static CityFragment getInstace() {
         Bundle x = new Bundle();
-        Citys fragment = new Citys();
+        CityFragment fragment = new CityFragment();
         fragment.setArguments(x);
         return fragment;
     }
@@ -49,7 +49,7 @@ public class Citys extends Fragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.citys, container, false);
+        view = inflater.inflate(R.layout.citys_fragment, container, false);
         mEditText = view.findViewById(R.id.land);
         mBtn = view.findViewById(R.id.Sumbit);
         mToTav = view.findViewById(R.id.to);
@@ -61,7 +61,7 @@ public class Citys extends Fragment implements View.OnClickListener {
         mToTav.setOnClickListener(this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(layoutManager);
-        mCityApi = Controller.getApi();
+        mCityApi = ApiController.getApi();
         mDB.close();
         return view;
     }
@@ -95,8 +95,8 @@ public class Citys extends Fragment implements View.OnClickListener {
                 });
                 break;
             case R.id.to:
-                for (int i = 0; i < Favorits.getList().size(); i++) {
-                    if (mSit.getText().toString().equals(Favorits.getList().get(i))) {
+                for (int i = 0; i < FragmentFavorites.getList().size(); i++) {
+                    if (mSit.getText().toString().equals(FragmentFavorites.getList().get(i))) {
                         Toast.makeText(getContext(), "already added", Toast.LENGTH_LONG).show();
                         return;
                     }
@@ -111,7 +111,7 @@ public class Citys extends Fragment implements View.OnClickListener {
                 ContentValues mСv = new ContentValues();
                 mСv.put("name", mSit.getText().toString());
                 mDataBase.insert(mDB.TABLE_CONTACTS, null, mСv);
-                Favorits.UpdateList();
+                FragmentFavorites.UpdateList();
                 break;
         }
     }

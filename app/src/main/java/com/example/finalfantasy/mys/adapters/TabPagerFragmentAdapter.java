@@ -1,11 +1,11 @@
-package com.example.finalfantasy.mys.Adapters;
+package com.example.finalfantasy.mys.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.example.finalfantasy.mys.fragmentClases.Citys;
-import com.example.finalfantasy.mys.fragmentClases.Favorits;
+import com.example.finalfantasy.mys.fragmentClases.CityFragment;
+import com.example.finalfantasy.mys.fragmentClases.FragmentFavorites;
 
 
 public class TabPagerFragmentAdapter extends FragmentPagerAdapter {
@@ -15,7 +15,7 @@ public class TabPagerFragmentAdapter extends FragmentPagerAdapter {
     public TabPagerFragmentAdapter(FragmentManager fm) {
         super(fm);
         mTabs = new String[]{
-                "Search by city", "Favorits"
+                "Search by city", "Favorites"
         };
     }
 
@@ -28,9 +28,9 @@ public class TabPagerFragmentAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return Citys.getInstace();
+                return CityFragment.getInstace();
             case 1:
-                return Favorits.getInstace();
+                return FragmentFavorites.getInstace();
         }
         return null;
     }

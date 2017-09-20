@@ -1,4 +1,4 @@
-package com.example.finalfantasy.mys.DB;
+package com.example.finalfantasy.mys.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
